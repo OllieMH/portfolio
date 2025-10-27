@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+:root {
+	--pixel-size: 5px; /* Define your base pixel unit */
+	--scene-width: 60vw;
+	--scene-height: 60vh;
+
+	/* Pixel Art Color Palette */
+	--color-sky-day: #87ceeb; /* A light blue */
+	--color-ground-grass: #5db829; /* A vibrant green */
+	--color-ground-dirt: #8b4513; /* Brown */
+	--color-feature-shadow: #555; /* Dark grey for shadows */
+	--color-feature-highlight: #fff; /* White for highlights */
+	--color-hill-base: #5f9a4e; /* Darker green for hills */
+}
+
+body {
+	margin: 0;
+	font-family: "Press Start 2P", system-ui; /* A common pixel font */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: #222; /* Dark background for the browser */
+	overflow: hidden; /* Hide scrollbars if content overflows */
+}
+
+#game-container {
+	display: flex;
+	flex-direction: column; /* Stack viewport and UI bar vertically */
+	border: var(--pixel-size) solid #333; /* Pixelated border for the whole game */
+	box-shadow: calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 2) 0 #000, calc(var(--pixel-size) * 3) calc(var(--pixel-size) * 3) 0 #111; /* Outer pixel shadow */
+}
+
+#game-viewport {
+	position: relative;
+	width: var(--scene-width);
+	height: var(--scene-height);
+	background-color: var(--color-sky-day); /* Default sky color */
+	overflow: hidden; /* Keep everything within the viewport */
+	image-rendering: pixelated; /* Crucial for any scaled images */
+	border-bottom: var(--pixel-size) solid #333; /* Separator for UI */
+}
+
+.sky {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url("assets/sky.png");
+	background-repeat: repeat-x;
+	image-rendering: pixelated;
+
+	/* Starting Position */
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+.ground {
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	background-image: url("assets/ground.png");
+	background-repeat: repeat-x;
+	image-rendering: pixelated;
+
+	/* Starting Position */
+	bottom: 0;
+	left: 0;
+	z-index: 6;
+}
+
+/* Example of a pixelated hill using box-shadow */
+.house {
+	position: absolute;
+	width: 500px;
+	height: 500px;
+
+	background-image: url("assets/house.png");
+	background-size: 100% 100%; /* Cover the element size */
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+
+	/* Starting Position */
+	bottom: calc(var(--pixel-size) * 1.5);
+	right: calc(var(--pixel-size) * 20);
+	z-index: 5;
+}
+
+#player {
+	position: absolute;
+	width: 64px;
+	height: 96px;
+
+	background-image: url("assets/character.png");
+	background-size: 100% 100%; /* Cover the element size */
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+
+	/* Starting Position */
+	bottom: calc(var(--pixel-size) * 11);
+	left: calc(var(--pixel-size) * 20);
+	z-index: 10;
+}
+
+#ui-bar {
+	width: var(--scene-width);
+	padding: calc(var(--pixel-size) * 4) 0 calc(var(--pixel-size) * 8) 0;
+	background-color: #444;
+	color: #eee;
+	text-align: center;
+	font-size: calc(var(--pixel-size) * 6); /* Smaller pixel font size */
+	text-shadow: calc(var(--pixel-size) * 1) calc(var(--pixel-size) * 1) 0 #000; /* Pixelated text shadow */
+}
+
+#ui-bar h2 {
+	margin: 0 0 calc(var(--pixel-size) * 4) 0;
+	font-size: calc(var(--pixel-size) * 8);
+	color: #ffd700; /* Gold */
+}
+
+#ui-bar p {
+	margin: 0;
+	color: #c0c0c0; /* Silver */
+}
