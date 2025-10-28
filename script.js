@@ -1,13 +1,8 @@
 // script.js
-
 // Moves left/right with ArrowLeft/ArrowRight or A/D keys.
 
 document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("player");
-  if (!el) {
-    console.warn('No element with id="player" found.');
-    return;
-  }
 
   // Ensure parent is positioned so absolute positioning of element works
   const parent = el.offsetParent || el.parentElement || document.body;
@@ -23,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (Number.isNaN(x)) x = el.offsetLeft || 0;
   el.style.left = `${x}px`;
 
-  const speed = 300; // px per second
+  const speed = 230; // px per second
   const keys = { left: false, right: false };
 
   window.addEventListener("keydown", (e) => {
