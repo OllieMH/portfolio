@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dt = (now - last) / 1000;
     last = now;
     const dir = (keys.right ? 1 : 0) - (keys.left ? 1 : 0);
+    el.classList.toggle("walking", dir !== 0); // Toggle animation based on movement
     if (dir !== 0) {
       x += dir * speed * dt;
       const maxX = Math.max(0, parent.clientWidth - el.offsetWidth);

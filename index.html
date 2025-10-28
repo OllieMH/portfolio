@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Oliver's Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div id="game-container">
-      <div id="game-viewport">
-        <div class="sky"></div>
-        <div class="ground"></div>
-        <div class="house"><div class="hotspot hs-house">test</div></div>
-        <div class="tree"><div class="hotspot hs-tree">test</div></div>
-        <div id="player"></div>
-      </div>
-      <div id="ui-bar">
-        <h2>Welcome to my portfolio!</h2>
-        <p>Use arrow keys to explore</p>
-      </div>
-    </div>
-    <script src="script.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Oliver's Portfolio</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div id="game-container">
+			<div id="game-viewport">
+				<div class="sky"></div>
+				<div class="ground"></div>
+				<div class="house">
+					<div class="house-img"></div>
+					<div class="pf-object house-object" id="obj1"></div>
+					<div class="pf-object house-object" id="obj2"></div>
+					<div class="pf-object house-object" id="obj3"></div>
+					<div class="hotspot hs-house"></div>
+				</div>
+				<div class="tree">
+					<div class="tree-img"></div>
+					<div class="tree-obj">
+						<div class="pf-object tree-object" id="obj4"></div>
+						<div class="pf-object tree-object" id="obj5"></div>
+						<div class="pf-object tree-object" id="obj6"></div>
+					</div>
+					<div class="hotspot hs-tree"></div>
+				</div>
+				<div id="player"></div>
+			</div>
+			<div id="ui-bar">
+				<h2>Welcome to my portfolio!</h2>
+				<p>Use arrow keys to explore</p>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
 </html>
