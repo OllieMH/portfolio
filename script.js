@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (Number.isNaN(x)) x = el.offsetLeft || 0;
   el.style.left = `${x}px`;
 
-  const speed = 230; // px per second
+  const speed = 300; // px per second
   const keys = { left: false, right: false };
 
   window.addEventListener("keydown", (e) => {
