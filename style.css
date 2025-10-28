@@ -129,6 +129,9 @@ body {
   left: calc(var(--pixel-size) * 20);
   z-index: 10;
 }
+.player-flipped {
+  transform: scaleX(-1);
+}
 
 #ui-bar {
   width: var(--scene-width);

@@ -24,9 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
       keys.left = true;
+      el.classList.toggle("player-flipped", true);
       e.preventDefault();
     } else if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
       keys.right = true;
+      el.classList.toggle("player-flipped", false);
       e.preventDefault();
     }
   });
