@@ -81,6 +81,15 @@ body {
   right: calc(var(--pixel-size) * 20);
   z-index: 5;
 }
+.hs-house {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  color: white;
+  bottom: calc(var(--pixel-size) * -85);
+  right: calc(var(--pixel-size) * -43);
+  z-index: 10;
+}
 .tree {
   position: absolute;
   width: 800px;
@@ -94,6 +103,17 @@ body {
   right: calc(var(--pixel-size) * 47);
   z-index: 4;
 }
+
+.hs-tree {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  color: white;
+  bottom: calc(var(--pixel-size) * -85);
+  right: calc(var(--pixel-size) * -12);
+  z-index: 10;
+}
+
 #player {
   position: absolute;
   width: 64px;
