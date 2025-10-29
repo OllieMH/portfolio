@@ -2,345 +2,398 @@
 
 /* ==================== Variables ==================== */
 :root {
-  --scene-width: 1300px;
-  --scene-height: 800px;
-  --ground-height: 100px;
+	--scene-width: 1300px;
+	--scene-height: 800px;
+	--ground-height: 100px;
 
-  /* Colors */
-  --color-bg: #222;
-  --color-border: #333;
-  --color-shadow-1: #000;
-  --color-shadow-2: #111;
-  --color-ui-bg: #444;
-  --color-ui-text: #eee;
-  --color-ui-subtitle: #c0c0c0;
-  --color-ui-title: #ffd700;
-  --color-sky: #87ceeb;
+	/* Colors */
+	--color-bg: #222;
+	--color-border: #333;
+	--color-shadow-1: #000;
+	--color-shadow-2: #111;
+	--color-ui-bg: #444;
+	--color-ui-text: #eee;
+	--color-ui-subtitle: #c0c0c0;
+	--color-ui-title: #ffd700;
+	--color-sky: #87ceeb;
 
-  /* Z-index layers */
-  --z-sky: 0;
-  --z-tree: 4;
-  --z-house: 5;
-  --z-ground: 6;
-  --z-hotspot: 10;
-  --z-player: 10;
+	/* Z-index layers */
+	--z-sky: 0;
+	--z-tree: 4;
+	--z-house: 5;
+	--z-ground: 6;
+	--z-hotspot: 10;
+	--z-player: 10;
 }
 
 /* ==================== Global Styles ==================== */
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: "Press Start 2P", system-ui;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: var(--color-bg);
-  overflow: hidden;
+	margin: 0;
+	font-family: "Press Start 2P", system-ui;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-color: var(--color-bg);
+	overflow: hidden;
 }
 
 /* ==================== Accessibility ==================== */
 .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
 }
 
 /* ==================== Game Container ==================== */
 #game-container {
-  display: flex;
-  flex-direction: column;
-  border: 5px solid var(--color-border);
-  box-shadow: 10px 10px 0 var(--color-shadow-1),
-    15px 15px 0 var(--color-shadow-2);
+	display: flex;
+	flex-direction: column;
+	border: 5px solid var(--color-border);
+	box-shadow: 10px 10px 0 var(--color-shadow-1), 15px 15px 0 var(--color-shadow-2);
 }
 
 #game-viewport {
-  position: relative;
-  width: var(--scene-width);
-  height: var(--scene-height);
-  background-color: var(--color-sky);
-  overflow: hidden;
-  image-rendering: pixelated;
-  border-bottom: 5px solid var(--color-border);
+	position: relative;
+	width: var(--scene-width);
+	height: var(--scene-height);
+	background-color: var(--color-sky);
+	overflow: hidden;
+	image-rendering: pixelated;
+	border-bottom: 5px solid var(--color-border);
 }
 
 /* ==================== Background Elements ==================== */
 .sky {
-  position: absolute;
-  inset: 0;
-  background-image: url("assets/sky.png");
-  background-repeat: repeat-x;
-  image-rendering: pixelated;
-  z-index: var(--z-sky);
+	position: absolute;
+	inset: 0;
+	background-image: url("assets/sky.png");
+	background-repeat: repeat-x;
+	image-rendering: pixelated;
+	z-index: var(--z-sky);
 }
 
 .ground {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: var(--ground-height);
-  background-image: url("assets/ground.png");
-  background-repeat: repeat-x;
-  image-rendering: pixelated;
-  z-index: var(--z-ground);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: var(--ground-height);
+	background-image: url("assets/ground.png");
+	background-repeat: repeat-x;
+	image-rendering: pixelated;
+	z-index: var(--z-ground);
 }
 
 /* ==================== Interactive Areas ==================== */
 .interactive-area {
-  position: absolute;
-  bottom: 8px;
+	position: absolute;
+	bottom: 8px;
 }
 
 /* House */
 .house {
-  right: 100px;
-  width: 500px;
-  height: 500px;
-  z-index: var(--z-house);
+	right: 100px;
+	top: 290px;
+	width: 500px;
+	height: 750px;
+	z-index: var(--z-house);
 }
 
 .house-img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("assets/house.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  image-rendering: pixelated;
-  pointer-events: none;
-  z-index: 2;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url("assets/house.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+	pointer-events: none;
+	z-index: 2;
 }
 
 /* Tree */
 .tree {
-  right: 235px;
-  bottom: -50px;
-  width: 800px;
-  height: 500px;
-  z-index: var(--z-tree);
+	right: 235px;
+	bottom: -50px;
+	width: 800px;
+	height: 500px;
+	z-index: var(--z-tree);
 }
 
 .tree-img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("assets/tree.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  image-rendering: pixelated;
-  pointer-events: none;
-  z-index: 2;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url("assets/tree.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+	pointer-events: none;
+	z-index: 2;
 }
 
 /* ==================== Portfolio Objects ==================== */
 .pf-object {
-  display: block;
-  width: 25px;
-  height: 50px;
-  transition: transform 260ms cubic-bezier(0.2, 0.5, 0.2, 1);
-  transform-origin: center bottom;
-  will-change: transform;
+	display: block;
+	width: 25px;
+	height: 50px;
+	transition: transform 260ms cubic-bezier(0.2, 0.5, 0.2, 1);
+	transform-origin: center bottom;
+	will-change: transform;
 }
 
 /* House Objects Container */
 .house-obj {
-  position: absolute;
-  left: 307px;
-  top: 110px;
-  display: flex;
-  transition: transform 200ms ease, filter 200ms ease;
-  transform-origin: center bottom;
-  will-change: transform;
+	position: absolute;
+	left: 315px;
+	top: 10px;
+	display: flex;
+	transition: transform 200ms ease, filter 200ms ease;
+	transform-origin: center bottom;
+	will-change: transform;
+}
+.house-object#smoke {
+	position: absolute;
+	width: 64px;
+	height: 128px;
+	background-image: url("assets/smoke.png");
+	background-size: 1600% 100%; /* 16 frames */
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+	animation: smoke-rise 10s steps(16) infinite;
 }
 
+@keyframes smoke-rise {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: -1024px 0; /* 16 frames × 64px width */
+	}
+}
 .house-obj.popped {
-  transform: translateY(-50px) scale(1.5);
-  filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.6));
+	transform: translateY(-50px) scale(1.5);
+	filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.6));
 }
 
-.house-obj.popped #obj1 {
-  transform: rotate(-15deg) translateX(-20px) translateY(-20px);
-}
-
-.house-obj.popped #obj2 {
-  transform: translateY(-20px);
-}
-
-.house-obj.popped #obj3 {
-  transform: rotate(15deg) translateX(20px) translateY(-20px);
-}
-
-.house-object#obj1 {
-  background-color: red;
-  transform: rotate(-15deg);
-}
-
-.house-object#obj2 {
-  background-color: blue;
-}
-
-.house-object#obj3 {
-  background-color: green;
-  transform: rotate(15deg);
+.house-obj.popped #smoke {
+	transform: translateX(-20px) translateY(-20px);
 }
 
 /* Tree Objects Container */
 .tree-obj {
-  position: absolute;
-  left: 275px;
-  top: 50px;
-  display: flex;
-  gap: 75px;
-  transition: transform 200ms ease, filter 200ms ease;
-  transform-origin: center bottom;
-  will-change: transform;
+	position: absolute;
+	left: 275px;
+	top: 50px;
+	display: flex;
+	gap: 75px;
+	transition: transform 200ms ease, filter 200ms ease;
+	transform-origin: center bottom;
+	will-change: transform;
 }
 
 .tree-obj.popped {
-  transform: translateY(-50px) scale(1.5);
-  filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.6));
+	transform: translateY(-50px) scale(1.5);
+	filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.6));
 }
 
-.tree-object#obj4 {
-  background-color: red;
-  transform: rotate(-15deg);
+.tree-object#cv {
+	background-color: red;
+	transform: rotate(-15deg);
 }
 
-.tree-object#obj5 {
-  background-color: blue;
-  position: relative;
-  bottom: 40px;
+.tree-object#projects {
+	background-color: blue;
+	position: relative;
+	bottom: 40px;
 }
 
-.tree-object#obj6 {
-  background-color: green;
-  transform: rotate(15deg);
+.tree-object#socials {
+	background-color: green;
+	transform: rotate(15deg);
+}
+
+/* ==================== About Me Content ==================== */
+.about-me-content {
+	position: fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 300ms ease;
+}
+
+.about-me-content.show {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.about-me-card {
+	position: relative;
+	background-color: var(--color-ui-bg);
+	border: 5px solid var(--color-border);
+	box-shadow: 10px 10px 0 var(--color-shadow-1);
+	padding: 40px;
+	max-width: 600px;
+	width: 90%;
+	color: var(--color-ui-text);
+	transform: translateY(100px);
+	opacity: 0;
+	transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 500ms ease;
+}
+
+.about-me-content.show .about-me-card {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.about-me-card h2 {
+	margin: 0 0 20px 0;
+	font-size: 28px;
+	color: var(--color-ui-title);
+	text-shadow: 3px 3px 0 var(--color-shadow-1);
+}
+
+.about-me-text p {
+	font-size: 14px;
+	line-height: 1.8;
+	margin: 0 0 15px 0;
+}
+
+.about-me-text p:last-child {
+	margin-bottom: 0;
 }
 
 /* ==================== Hotspots ==================== */
 .hotspot {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  bottom: 0;
-  background-color: transparent;
-  z-index: var(--z-hotspot);
-  cursor: pointer;
+	position: absolute;
+	width: 100px;
+	height: 150px;
+	bottom: 0;
+	background-color: transparent;
+	z-index: var(--z-hotspot);
+	cursor: pointer;
 }
 
 .hs-house {
-  right: 7.5vw;
+	right: 300px;
+	bottom: 55px;
 }
 
 .hs-tree {
-  right: 15vw;
+	right: 15vw;
 }
 
 /* ==================== Player ==================== */
 #player {
-  position: absolute;
-  bottom: 55px;
-  left: 100px;
-  width: 96px;
-  height: 96px;
-  background-image: url("assets/character-sheet.png");
-  background-size: 400% 100%; /* 4 frames */
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  image-rendering: pixelated;
-  z-index: var(--z-player);
+	position: absolute;
+	bottom: 55px;
+	left: 100px;
+	width: 96px;
+	height: 96px;
+	background-image: url("assets/character-sheet.png");
+	background-size: 400% 100%; /* 4 frames */
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+	z-index: var(--z-player);
 }
 
 #player.walking {
-  animation: walk 0.6s steps(4) infinite;
+	animation: walk 0.6s steps(4) infinite;
 }
 
 #player.player-flipped {
-  transform: scaleX(-1);
+	transform: scaleX(-1);
 }
 
 @keyframes walk {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: -384px 0; /* 4 frames × 96px */
-  }
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: -384px 0; /* 4 frames × 96px */
+	}
 }
 
 /* ==================== UI Bar ==================== */
 #ui-bar {
-  width: var(--scene-width);
-  padding: 20px;
-  background-color: var(--color-ui-bg);
-  color: var(--color-ui-text);
-  text-align: center;
+	width: var(--scene-width);
+	padding: 20px;
+	background-color: var(--color-ui-bg);
+	color: var(--color-ui-text);
+	text-align: center;
 }
 
 #ui-bar h1 {
-  margin: 0 0 20px 0;
-  font-size: 32px;
-  color: var(--color-ui-title);
-  text-shadow: 5px 5px 0 var(--color-shadow-1);
+	margin: 0 0 20px 0;
+	font-size: 32px;
+	color: var(--color-ui-title);
+	text-shadow: 5px 5px 0 var(--color-shadow-1);
 }
 
 #ui-bar p {
-  margin: 0;
-  font-size: 16px;
-  color: var(--color-ui-subtitle);
+	margin: 0;
+	font-size: 16px;
+	color: var(--color-ui-subtitle);
 }
 
 #ui-bar kbd {
-  display: inline-block;
-  padding: 4px 8px;
-  margin: 0 4px;
-  background-color: var(--color-border);
-  border-radius: 4px;
-  border: 2px solid var(--color-shadow-2);
-  font-family: inherit;
-  font-size: inherit;
+	display: inline-block;
+	padding: 4px 8px;
+	margin: 0 4px;
+	background-color: var(--color-border);
+	border-radius: 4px;
+	border: 2px solid var(--color-shadow-2);
+	font-family: inherit;
+	font-size: inherit;
 }
 
 /* ==================== Responsive Design ==================== */
 @media (max-width: 1400px) {
-  :root {
-    --scene-width: 1000px;
-    --scene-height: 600px;
-  }
+	:root {
+		--scene-width: 1000px;
+		--scene-height: 600px;
+	}
 
-  #player {
-    width: 72px;
-    height: 72px;
-  }
+	#player {
+		width: 72px;
+		height: 72px;
+	}
 
-  #ui-bar h1 {
-    font-size: 24px;
-  }
+	#ui-bar h1 {
+		font-size: 24px;
+	}
 
-  #ui-bar p {
-    font-size: 14px;
-  }
+	#ui-bar p {
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 1100px) {
-  :root {
-    --scene-width: 800px;
-    --scene-height: 500px;
-  }
+	:root {
+		--scene-width: 800px;
+		--scene-height: 500px;
+	}
 
-  .house,
-  .tree {
-    transform: scale(0.8);
-  }
+	.house,
+	.tree {
+		transform: scale(0.8);
+	}
 }

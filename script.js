@@ -133,7 +133,18 @@ class HotspotManager {
     const checkCollisions = () => {
       this.hotspots.forEach(({ trigger, target }) => {
         const colliding = this.isColliding(this.player, trigger);
-        target.classList.toggle("popped", colliding);
+
+        // Handle about me content for house hotspot
+        if (trigger.classList.contains("hs-house")) {
+          if (colliding) {
+            this.showAboutMe();
+          } else {
+            this.hideAboutMe();
+          }
+        } else {
+          // Only apply popped effect to non-house hotspots
+          target.classList.toggle("popped", colliding);
+        }
       });
       requestAnimationFrame(checkCollisions);
     };
@@ -159,6 +170,27 @@ class HotspotManager {
         target.classList.remove("popped");
       });
     });
+  }
+
+  showAboutMe() {
+    const aboutMeContent = document.getElementById("about-me-content");
+    if (aboutMeContent) {
+      aboutMeContent.removeAttribute("hidden");
+      // Use setTimeout to ensure the transition triggers
+      setTimeout(() => {
+        aboutMeContent.classList.add("show");
+      }, 10);
+    }
+  }
+
+  hideAboutMe() {
+    const aboutMeContent = document.getElementById("about-me-content");
+    if (aboutMeContent) {
+      aboutMeContent.classList.remove("show");
+      setTimeout(() => {
+        aboutMeContent.setAttribute("hidden", "");
+      }, 300);
+    }
   }
 
   isColliding(elementA, elementB) {
