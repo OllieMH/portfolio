@@ -56,8 +56,93 @@ document.addEventListener("DOMContentLoaded", () => {
       x = clamp(x, 0, maxX);
       el.style.left = `${x}px`;
     }
+    // Collision detection between player and hotspots to trigger pop animations
+    try {
+      const playerEl = document.getElementById("player");
+      const hsTree = document.querySelector(".hs-tree");
+      const hsHouse = document.querySelector(".hs-house");
+      const treeObj = document.querySelector(".tree-obj");
+      const houseObj = document.querySelector(".house-obj");
+
+      function isColliding(a, b) {
+        if (!a || !b) return false;
+        const ra = a.getBoundingClientRect();
+        const rb = b.getBoundingClientRect();
+        return !(
+          ra.right < rb.left ||
+          ra.left > rb.right ||
+          ra.bottom < rb.top ||
+          ra.top > rb.bottom
+        );
+      }
+
+      // Toggle popped state based on overlap
+      if (isColliding(playerEl, hsTree)) {
+        treeObj && treeObj.classList.add("popped");
+      } else {
+        treeObj && treeObj.classList.remove("popped");
+      }
+
+      if (isColliding(playerEl, hsHouse)) {
+        houseObj && houseObj.classList.add("popped");
+      } else {
+        houseObj && houseObj.classList.remove("popped");
+      }
+    } catch (err) {
+      // Defensive: if anything fails, don't break the animation loop
+      // console.error(err);
+    }
+
     requestAnimationFrame(step);
   }
 
   requestAnimationFrame(step);
+
+  // Also allow direct pointer/touch interaction with hotspots
+  try {
+    const hsTree = document.querySelector(".hs-tree");
+    const hsHouse = document.querySelector(".hs-house");
+    const treeObj = document.querySelector(".tree-obj");
+    const houseObj = document.querySelector(".house-obj");
+
+    if (hsTree) {
+      hsTree.addEventListener(
+        "pointerenter",
+        () => treeObj && treeObj.classList.add("popped")
+      );
+      hsTree.addEventListener(
+        "pointerleave",
+        () => treeObj && treeObj.classList.remove("popped")
+      );
+      hsTree.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        treeObj && treeObj.classList.add("popped");
+      });
+      hsTree.addEventListener(
+        "pointerup",
+        () => treeObj && treeObj.classList.remove("popped")
+      );
+    }
+
+    if (hsHouse) {
+      hsHouse.addEventListener(
+        "pointerenter",
+        () => houseObj && houseObj.classList.add("popped")
+      );
+      hsHouse.addEventListener(
+        "pointerleave",
+        () => houseObj && houseObj.classList.remove("popped")
+      );
+      hsHouse.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        houseObj && houseObj.classList.add("popped");
+      });
+      hsHouse.addEventListener(
+        "pointerup",
+        () => houseObj && houseObj.classList.remove("popped")
+      );
+    }
+  } catch (err) {
+    // ignore
+  }
 });
