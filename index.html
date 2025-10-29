@@ -3,39 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Oliver's interactive portfolio - explore using arrow keys"
+    />
     <title>Oliver's Portfolio</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="game-container">
-      <div id="game-viewport">
-        <div class="sky"></div>
-        <div class="ground"></div>
-        <div class="house">
-          <div class="house-img"></div>
-          <div class="house-obj">
-            <div class="pf-object house-object" id="obj1"></div>
-            <div class="pf-object house-object" id="obj2"></div>
-            <div class="pf-object house-object" id="obj3"></div>
+    <main id="game-container">
+      <div
+        id="game-viewport"
+        role="application"
+        aria-label="Interactive portfolio game"
+      >
+        <!-- Background layers -->
+        <div class="sky" aria-hidden="true"></div>
+        <div class="ground" aria-hidden="true"></div>
+
+        <!-- Interactive objects -->
+        <article class="interactive-area house">
+          <div class="house-img" aria-hidden="true"></div>
+          <div class="house-obj" aria-live="polite">
+            <a
+              href="#"
+              class="pf-object house-object"
+              id="obj1"
+              aria-label="House project 1"
+            >
+              <span class="sr-only">View house project 1</span>
+            </a>
+            <a
+              href="#"
+              class="pf-object house-object"
+              id="obj2"
+              aria-label="House project 2"
+            >
+              <span class="sr-only">View house project 2</span>
+            </a>
+            <a
+              href="#"
+              class="pf-object house-object"
+              id="obj3"
+              aria-label="House project 3"
+            >
+              <span class="sr-only">View house project 3</span>
+            </a>
           </div>
-          <div class="hotspot hs-house"></div>
-        </div>
-        <div class="tree">
-          <div class="tree-img"></div>
-          <div class="tree-obj">
-            <div class="pf-object tree-object" id="obj4"></div>
-            <div class="pf-object tree-object" id="obj5"></div>
-            <div class="pf-object tree-object" id="obj6"></div>
+          <div class="hotspot hs-house" aria-label="House hotspot"></div>
+        </article>
+
+        <article class="interactive-area tree">
+          <div class="tree-img" aria-hidden="true"></div>
+          <div class="tree-obj" aria-live="polite">
+            <a
+              href="#"
+              class="pf-object tree-object"
+              id="obj4"
+              aria-label="Tree project 1"
+            >
+              <span class="sr-only">View tree project 1</span>
+            </a>
+            <a
+              href="#"
+              class="pf-object tree-object"
+              id="obj5"
+              aria-label="Tree project 2"
+            >
+              <span class="sr-only">View tree project 2</span>
+            </a>
+            <a
+              href="#"
+              class="pf-object tree-object"
+              id="obj6"
+              aria-label="Tree project 3"
+            >
+              <span class="sr-only">View tree project 3</span>
+            </a>
           </div>
-          <div class="hotspot hs-tree"></div>
-        </div>
-        <div id="player"></div>
+          <div class="hotspot hs-tree" aria-label="Tree hotspot"></div>
+        </article>
+
+        <!-- Player character -->
+        <div id="player" role="img" aria-label="Player character"></div>
       </div>
-      <div id="ui-bar">
-        <h2>Welcome to my portfolio!</h2>
-        <p>Use arrow keys to explore</p>
-      </div>
-    </div>
+
+      <!-- UI Controls -->
+      <aside id="ui-bar" aria-label="Instructions">
+        <h1>Welcome to my portfolio!</h1>
+        <p>Use <kbd>Arrow keys</kbd> or <kbd>A</kbd>/<kbd>D</kbd> to explore</p>
+      </aside>
+    </main>
+
     <script src="script.js"></script>
   </body>
 </html>
