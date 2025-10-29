@@ -1,148 +1,186 @@
 // script.js
-// Moves left/right with ArrowLeft/ArrowRight or A/D keys.
 
+const CONFIG = {
+  speed: 300, // pixels per second
+  keys: {
+    left: ["ArrowLeft", "a", "A"],
+    right: ["ArrowRight", "d", "D"],
+  },
+};
+
+class PlayerController {
+  constructor(playerId) {
+    this.player = document.getElementById(playerId);
+    if (!this.player) {
+      console.error(`Player element #${playerId} not found`);
+      return;
+    }
+
+    this.setupPositioning();
+    this.x = this.getInitialX();
+    this.keys = { left: false, right: false };
+    this.lastTime = performance.now();
+
+    this.bindEvents();
+    this.startAnimationLoop();
+  }
+
+  setupPositioning() {
+    const parent =
+      this.player.offsetParent || this.player.parentElement || document.body;
+    const parentStyle = getComputedStyle(parent);
+    if (parentStyle.position === "static") {
+      parent.style.position = "relative";
+    }
+
+    const elStyle = getComputedStyle(this.player);
+    if (elStyle.position === "static") {
+      this.player.style.position = "absolute";
+    }
+
+    this.parent = parent;
+  }
+
+  getInitialX() {
+    const elStyle = getComputedStyle(this.player);
+    let x = parseFloat(elStyle.left);
+    if (Number.isNaN(x)) {
+      x = this.player.offsetLeft || 0;
+    }
+    this.player.style.left = `${x}px`;
+    return x;
+  }
+
+  bindEvents() {
+    window.addEventListener("keydown", (e) => this.handleKeyDown(e));
+    window.addEventListener("keyup", (e) => this.handleKeyUp(e));
+  }
+
+  handleKeyDown(e) {
+    if (CONFIG.keys.left.includes(e.key)) {
+      this.keys.left = true;
+      this.player.classList.add("player-flipped");
+      e.preventDefault();
+    } else if (CONFIG.keys.right.includes(e.key)) {
+      this.keys.right = true;
+      this.player.classList.remove("player-flipped");
+      e.preventDefault();
+    }
+  }
+
+  handleKeyUp(e) {
+    if (CONFIG.keys.left.includes(e.key)) {
+      this.keys.left = false;
+    } else if (CONFIG.keys.right.includes(e.key)) {
+      this.keys.right = false;
+    }
+  }
+
+  update(deltaTime) {
+    const direction = (this.keys.right ? 1 : 0) - (this.keys.left ? 1 : 0);
+
+    this.player.classList.toggle("walking", direction !== 0);
+
+    if (direction !== 0) {
+      this.x += direction * CONFIG.speed * deltaTime;
+      this.x = this.clampPosition(this.x);
+      this.player.style.left = `${this.x}px`;
+    }
+  }
+
+  clampPosition(value) {
+    const maxX = Math.max(0, this.parent.clientWidth - this.player.offsetWidth);
+    return Math.max(0, Math.min(maxX, value));
+  }
+
+  startAnimationLoop() {
+    const animate = (now) => {
+      const deltaTime = (now - this.lastTime) / 1000;
+      this.lastTime = now;
+
+      this.update(deltaTime);
+
+      requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+  }
+
+  getElement() {
+    return this.player;
+  }
+}
+
+class HotspotManager {
+  constructor(playerElement) {
+    this.player = playerElement;
+    this.hotspots = [
+      {
+        trigger: document.querySelector(".hs-tree"),
+        target: document.querySelector(".tree-obj"),
+      },
+      {
+        trigger: document.querySelector(".hs-house"),
+        target: document.querySelector(".house-obj"),
+      },
+    ].filter((hs) => hs.trigger && hs.target);
+
+    this.setupCollisionDetection();
+    this.setupInteractions();
+  }
+
+  setupCollisionDetection() {
+    const checkCollisions = () => {
+      this.hotspots.forEach(({ trigger, target }) => {
+        const colliding = this.isColliding(this.player, trigger);
+        target.classList.toggle("popped", colliding);
+      });
+      requestAnimationFrame(checkCollisions);
+    };
+    requestAnimationFrame(checkCollisions);
+  }
+
+  setupInteractions() {
+    this.hotspots.forEach(({ trigger, target }) => {
+      trigger.addEventListener("pointerenter", () => {
+        target.classList.add("popped");
+      });
+
+      trigger.addEventListener("pointerleave", () => {
+        target.classList.remove("popped");
+      });
+
+      trigger.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        target.classList.add("popped");
+      });
+
+      trigger.addEventListener("pointerup", () => {
+        target.classList.remove("popped");
+      });
+    });
+  }
+
+  isColliding(elementA, elementB) {
+    if (!elementA || !elementB) return false;
+
+    const rectA = elementA.getBoundingClientRect();
+    const rectB = elementB.getBoundingClientRect();
+
+    return !(
+      rectA.right < rectB.left ||
+      rectA.left > rectB.right ||
+      rectA.bottom < rectB.top ||
+      rectA.top > rectB.bottom
+    );
+  }
+}
+
+// Initialize on DOM ready
 document.addEventListener("DOMContentLoaded", () => {
-  const el = document.getElementById("player");
+  const playerController = new PlayerController("player");
 
-  // Ensure parent is positioned so absolute positioning of element works
-  const parent = el.offsetParent || el.parentElement || document.body;
-  const parentStyle = getComputedStyle(parent);
-  if (parentStyle.position === "static") parent.style.position = "relative";
-
-  // Ensure the element can be positioned with left
-  const elStyle = getComputedStyle(el);
-  if (elStyle.position === "static") el.style.position = "absolute";
-
-  // Initialize x from left css or offsetLeft
-  let x = parseFloat(elStyle.left);
-  if (Number.isNaN(x)) x = el.offsetLeft || 0;
-  el.style.left = `${x}px`;
-
-  const speed = 300; // px per second
-  const keys = { left: false, right: false };
-
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
-      keys.left = true;
-      el.classList.toggle("player-flipped", true);
-      e.preventDefault();
-    } else if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
-      keys.right = true;
-      el.classList.toggle("player-flipped", false);
-      e.preventDefault();
-    }
-  });
-
-  window.addEventListener("keyup", (e) => {
-    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A")
-      keys.left = false;
-    else if (e.key === "ArrowRight" || e.key === "d" || e.key === "D")
-      keys.right = false;
-  });
-
-  let last = performance.now();
-  function clamp(val, a, b) {
-    return Math.max(a, Math.min(b, val));
-  }
-
-  function step(now) {
-    const dt = (now - last) / 1000;
-    last = now;
-    const dir = (keys.right ? 1 : 0) - (keys.left ? 1 : 0);
-    el.classList.toggle("walking", dir !== 0); // Toggle animation based on movement
-    if (dir !== 0) {
-      x += dir * speed * dt;
-      const maxX = Math.max(0, parent.clientWidth - el.offsetWidth);
-      x = clamp(x, 0, maxX);
-      el.style.left = `${x}px`;
-    }
-    // Collision detection between player and hotspots to trigger pop animations
-    try {
-      const playerEl = document.getElementById("player");
-      const hsTree = document.querySelector(".hs-tree");
-      const hsHouse = document.querySelector(".hs-house");
-      const treeObj = document.querySelector(".tree-obj");
-      const houseObj = document.querySelector(".house-obj");
-
-      function isColliding(a, b) {
-        if (!a || !b) return false;
-        const ra = a.getBoundingClientRect();
-        const rb = b.getBoundingClientRect();
-        return !(
-          ra.right < rb.left ||
-          ra.left > rb.right ||
-          ra.bottom < rb.top ||
-          ra.top > rb.bottom
-        );
-      }
-
-      // Toggle popped state based on overlap
-      if (isColliding(playerEl, hsTree)) {
-        treeObj && treeObj.classList.add("popped");
-      } else {
-        treeObj && treeObj.classList.remove("popped");
-      }
-
-      if (isColliding(playerEl, hsHouse)) {
-        houseObj && houseObj.classList.add("popped");
-      } else {
-        houseObj && houseObj.classList.remove("popped");
-      }
-    } catch (err) {
-      // Defensive: if anything fails, don't break the animation loop
-      // console.error(err);
-    }
-
-    requestAnimationFrame(step);
-  }
-
-  requestAnimationFrame(step);
-
-  // Also allow direct pointer/touch interaction with hotspots
-  try {
-    const hsTree = document.querySelector(".hs-tree");
-    const hsHouse = document.querySelector(".hs-house");
-    const treeObj = document.querySelector(".tree-obj");
-    const houseObj = document.querySelector(".house-obj");
-
-    if (hsTree) {
-      hsTree.addEventListener(
-        "pointerenter",
-        () => treeObj && treeObj.classList.add("popped")
-      );
-      hsTree.addEventListener(
-        "pointerleave",
-        () => treeObj && treeObj.classList.remove("popped")
-      );
-      hsTree.addEventListener("pointerdown", (e) => {
-        e.preventDefault();
-        treeObj && treeObj.classList.add("popped");
-      });
-      hsTree.addEventListener(
-        "pointerup",
-        () => treeObj && treeObj.classList.remove("popped")
-      );
-    }
-
-    if (hsHouse) {
-      hsHouse.addEventListener(
-        "pointerenter",
-        () => houseObj && houseObj.classList.add("popped")
-      );
-      hsHouse.addEventListener(
-        "pointerleave",
-        () => houseObj && houseObj.classList.remove("popped")
-      );
-      hsHouse.addEventListener("pointerdown", (e) => {
-        e.preventDefault();
-        houseObj && houseObj.classList.add("popped");
-      });
-      hsHouse.addEventListener(
-        "pointerup",
-        () => houseObj && houseObj.classList.remove("popped")
-      );
-    }
-  } catch (err) {
-    // ignore
+  if (playerController.getElement()) {
+    new HotspotManager(playerController.getElement());
   }
 });
