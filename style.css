@@ -256,6 +256,9 @@ body {
 			color: var(--color-ui-title);
 		}
 	}
+	p:last-child {
+		margin-bottom: 0;
+	}
 }
 
 /* ==================== About Me Content ==================== */
