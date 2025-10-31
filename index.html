@@ -1,102 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Oliver's interactive portfolio - explore using arrow keys"
-    />
-    <title>Oliver's Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main id="game-container">
-      <div
-        id="game-viewport"
-        role="application"
-        aria-label="Interactive portfolio game"
-      >
-        <!-- Background layers -->
-        <div class="sky" aria-hidden="true"></div>
-        <div class="ground" aria-hidden="true"></div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Oliver's interactive portfolio - explore using arrow keys" />
+		<title>Oliver's Portfolio</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main id="game-container">
+			<div id="game-viewport" role="application" aria-label="Interactive portfolio game">
+				<!-- Background layers -->
+				<div class="sky" aria-hidden="true"></div>
+				<div class="ground" aria-hidden="true"></div>
 
-        <!-- Interactive objects -->
-        <article class="interactive-area house">
-          <div class="house-img" aria-hidden="true"></div>
-          <div class="house-obj" aria-live="polite">
-            <a
-              href="#"
-              class="house-object"
-              id="smoke"
-              aria-label="About me section"
-            >
-              <span class="sr-only">View about me</span>
-            </a>
-          </div>
+				<!-- Interactive objects -->
+				<article class="interactive-area house">
+					<div class="house-img" aria-hidden="true"></div>
+					<div class="house-obj" aria-live="polite">
+						<a href="#" class="house-object" id="smoke" aria-label="About me section">
+							<span class="sr-only">View about me</span>
+						</a>
+					</div>
 
-          <!-- About Me Content -->
-          <div id="about-me-content" class="about-me-content" hidden>
-            <div class="about-me-card">
-              <h2>About Me</h2>
-              <div class="about-me-text">
-                <p>
-                  Hi! I'm Oliver, a 26 year old customer advisor and IT student
-                  from Norway, passionate about web development and UX design.
-                </p>
-                <p>
-                  Mostly self-taught in JavaScript, HTML, and CSS by tinkering a
-                  bit on my free time over the last decade, as well as taking
-                  some courses on frontend development and programming.
-                </p>
-                <p>
-                  I focus on creating intuitive, user-friendly interfaces,
-                  driven by my interest in UX design.
-                </p>
-              </div>
-            </div>
-          </div>
-        </article>
+					<!-- About Me Content -->
+					<div id="about-me-content" class="about-me-content" hidden>
+						<div class="about-me-card">
+							<h2>About Me</h2>
+							<div class="about-me-text">
+								<p>Hi! I'm Oliver, a 26 year old customer advisor and IT student from Norway, passionate about web development and UX design.</p>
+								<p>
+									I have been tinkering on and off with frontend development for about 10 years, and have been taking university courses in computer engineering and frontend development before starting my Bachelor's degree in IT and
+									Digitalization.
+								</p>
+							</div>
+						</div>
+					</div>
+				</article>
 
-        <div class="hotspot hs-house" aria-label="House hotspot"></div>
+				<div class="hotspot hs-house" aria-label="House hotspot"></div>
 
-        <article class="interactive-area tree">
-          <div class="tree-img" aria-hidden="true"></div>
-          <div class="tree-obj" aria-live="polite">
-            <a href="#" class="pf-object tree-object" id="cv" aria-label="CV">
-              <span class="sr-only">View tree project 1</span>
-            </a>
-            <a
-              href="#"
-              class="pf-object tree-object"
-              id="projects"
-              aria-label="Projects"
-            >
-              <span class="sr-only">View tree project 2</span>
-            </a>
-            <a
-              href="#"
-              class="pf-object tree-object"
-              id="socials"
-              aria-label="Socials"
-            >
-              <span class="sr-only">View tree project 3</span>
-            </a>
-          </div>
-          <div class="hotspot hs-tree" aria-label="Tree hotspot"></div>
-        </article>
+				<article class="interactive-area tree">
+					<div class="tree-img" aria-hidden="true"></div>
+					<div class="tree-obj" aria-live="polite">
+						<a href="#" class="pf-object tree-object" id="cv" aria-label="CV">
+							<span class="sr-only">View tree project 1</span>
+						</a>
+						<a href="#" class="pf-object tree-object" id="projects" aria-label="Projects">
+							<span class="sr-only">View tree project 2</span>
+						</a>
+						<a href="#" class="pf-object tree-object" id="socials" aria-label="Socials">
+							<span class="sr-only">View tree project 3</span>
+						</a>
+					</div>
+					<div class="hotspot hs-tree" aria-label="Tree hotspot"></div>
+				</article>
 
-        <!-- Player character -->
-        <div id="player" role="img" aria-label="Player character"></div>
-      </div>
+				<!-- Player character -->
+				<div id="player" role="img" aria-label="Player character"></div>
+			</div>
 
-      <!-- UI Controls -->
-      <aside id="ui-bar" aria-label="Instructions">
-        <h1>Welcome to my portfolio!</h1>
-        <p>Use <kbd>Arrow keys</kbd> or <kbd>A</kbd>/<kbd>D</kbd> to explore</p>
-      </aside>
-    </main>
+			<!-- UI Controls -->
+			<aside id="ui-bar" aria-label="Instructions">
+				<h1>Welcome to my portfolio!</h1>
+				<p>Use <kbd>Arrow keys</kbd> or <kbd>A</kbd>/<kbd>D</kbd> to explore</p>
+			</aside>
+		</main>
 
-    <script src="script.js"></script>
-  </body>
+		<script src="script.js"></script>
+	</body>
 </html>
