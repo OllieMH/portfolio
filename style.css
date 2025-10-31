@@ -324,11 +324,10 @@ body {
 
 .hs-house {
 	right: 300px;
-	bottom: 55px;
 }
 
 .hs-tree {
-	right: 15vw;
+	right: 355px;
 }
 
 /* ==================== Player ==================== */
@@ -392,7 +391,7 @@ body {
 }
 
 /* ==================== Responsive Design ==================== */
-@media (max-width: 1400px) {
+/*@media (max-width: 1400px) {
 	:root {
 		--scene-width: 1000px;
 		--scene-height: 600px;
@@ -422,4 +421,4 @@ body {
 	.tree {
 		transform: scale(0.8);
 	}
-}
+}*/
