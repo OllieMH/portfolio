@@ -89,7 +89,7 @@ Hi! I'm Oliver, a 26-year-old customer advisor and IT student from Norway, passi
 
 - **Website**: [omhille.no](https://omhille.no)
 - **GitHub**: [@OllieMH](https://github.com/OllieMH)
-- **LinkedIn** [Oliver Matre Hille](https://www.linkedin.com/in/oliver-matre-hille-779b61239/)
+- **LinkedIn**: [Oliver Matre Hille](https://www.linkedin.com/in/oliver-matre-hille-779b61239/)
 
 ## 📄 License
 
