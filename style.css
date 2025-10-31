@@ -220,8 +220,29 @@ body {
 	}
 }
 
-/* ==================== CV Content ==================== */
-.cv-content {
+/* ==================== Content Cards ==================== */
+
+.card {
+	position: relative;
+	background-color: var(--color-ui-bg);
+	border: 5px solid var(--color-border);
+	box-shadow: 10px 10px var(--color-shadow-1);
+	padding: 40px;
+	max-width: 800px;
+	width: 90%;
+	color: var(--color-ui-text);
+	transform: translateY(100px);
+	opacity: 0;
+	transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 500ms ease;
+	& h2 {
+		margin: 0 0 20px 0;
+		font-size: 28px;
+		color: var(--color-ui-title);
+		text-shadow: 3px 3px 0 var(--color-shadow-1);
+	}
+}
+
+.content {
 	position: fixed;
 	margin-bottom: 200px;
 	inset: 0;
@@ -244,11 +265,9 @@ body {
 
 .cv-container {
 	display: flex;
-	gap: 40px;
 	flex-wrap: wrap;
 	justify-content: center;
 	p {
-		margin-bottom: -30px;
 		line-height: 24px;
 		font-size: small;
 		a {
@@ -256,64 +275,12 @@ body {
 			color: var(--color-ui-title);
 		}
 	}
-	p:last-child {
-		margin-bottom: 0;
-	}
 }
 
-/* ==================== About Me Content ==================== */
-.about-me-content {
-	position: fixed;
-	margin-bottom: 200px;
-	inset: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 100;
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 300ms ease;
-}
-
-.about-me-content.show {
-	opacity: 1;
-	pointer-events: all;
-}
-
-.card {
-	position: relative;
-	background-color: var(--color-ui-bg);
-	border: 5px solid var(--color-border);
-	box-shadow: 10px 10px var(--color-shadow-1);
-	padding: 40px;
-	max-width: 800px;
-	width: 90%;
-	color: var(--color-ui-text);
-	transform: translateY(100px);
-	opacity: 0;
-	transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 500ms ease;
-}
-
-.about-me-content.show .card {
-	transform: translateY(0);
-	opacity: 1;
-}
-
-.card h2 {
-	margin: 0 0 20px 0;
-	font-size: 28px;
-	color: var(--color-ui-title);
-	text-shadow: 3px 3px 0 var(--color-shadow-1);
-}
-
-.about-me-text p {
+#about-me-text p {
 	font-size: 14px;
 	line-height: 1.8;
 	margin: 0 0 15px 0;
-}
-
-.about-me-text p:last-child {
-	margin-bottom: 0;
 }
 
 /* ==================== Hotspots ==================== */
