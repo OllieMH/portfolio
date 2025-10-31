@@ -187,37 +187,37 @@ body {
 	transition: transform 200ms ease, filter 200ms ease;
 	transform-origin: center bottom;
 	will-change: transform;
+	&.popped {
+		transform: translateY(-50px) scale(1.5);
+		filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.6));
+	}
 }
 
-.tree-obj.popped {
-	transform: translateY(-50px) scale(1.5);
-	filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.6));
+.tree-object {
+	&#cv {
+		background-image: url("assets/cv.png");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		image-rendering: pixelated;
+		transform: rotate(-15deg);
+	}
+	&#projects {
+		background-image: url("assets/projects.png");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		image-rendering: pixelated;
+		position: relative;
+		bottom: 40px;
+	}
+	&#socials {
+		background-image: url("assets/socials.png");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		image-rendering: pixelated;
+		transform: rotate(15deg);
+	}
 }
 
-.tree-object#cv {
-	background-image: url("assets/cv.png");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	image-rendering: pixelated;
-	transform: rotate(-15deg);
-}
-
-.tree-object#projects {
-	background-image: url("assets/projects.png");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	image-rendering: pixelated;
-	position: relative;
-	bottom: 40px;
-}
-
-.tree-object#socials {
-	background-image: url("assets/socials.png");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	image-rendering: pixelated;
-	transform: rotate(15deg);
-}
 /* ==================== CV Content ==================== */
 .cv-content {
 	position: fixed;
@@ -230,32 +230,32 @@ body {
 	opacity: 0;
 	pointer-events: none;
 	transition: opacity 300ms ease;
+	&.show {
+		opacity: 1;
+		pointer-events: all;
+		& .card {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
 }
 
-.cv-content.show {
-	opacity: 1;
-	pointer-events: all;
-}
-
-.cv-content.show .card {
-	transform: translateY(0);
-	opacity: 1;
-}
 .cv-container {
 	display: flex;
 	gap: 40px;
 	flex-wrap: wrap;
 	justify-content: center;
+	p {
+		margin-bottom: -30px;
+		line-height: 24px;
+		font-size: small;
+		a {
+			text-decoration: none;
+			color: var(--color-ui-title);
+		}
+	}
 }
-.cv-container p {
-	margin-bottom: -30px;
-	line-height: 24px;
-	font-size: small;
-}
-.cv-container a {
-	text-decoration: none;
-	color: var(--color-ui-title);
-}
+
 /* ==================== About Me Content ==================== */
 .about-me-content {
 	position: fixed;
