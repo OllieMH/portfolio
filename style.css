@@ -218,26 +218,6 @@ body {
 	image-rendering: pixelated;
 	transform: rotate(15deg);
 }
-
-/* ==================== About Me Content ==================== */
-.about-me-content {
-	position: fixed;
-	margin-bottom: 200px;
-	inset: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 100;
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 300ms ease;
-}
-
-.about-me-content.show {
-	opacity: 1;
-	pointer-events: all;
-}
-
 /* ==================== CV Content ==================== */
 .cv-content {
 	position: fixed;
@@ -260,6 +240,41 @@ body {
 .cv-content.show .card {
 	transform: translateY(0);
 	opacity: 1;
+}
+.cv-container {
+	display: flex;
+	gap: 40px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.cvs {
+	display: flex;
+	flex-direction: column;
+	text-decoration: none;
+	color: inherit;
+	align-items: center;
+}
+.cvs img {
+	max-height: 400px;
+	image-rendering: smooth;
+}
+/* ==================== About Me Content ==================== */
+.about-me-content {
+	position: fixed;
+	margin-bottom: 200px;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 300ms ease;
+}
+
+.about-me-content.show {
+	opacity: 1;
+	pointer-events: all;
 }
 
 .card {
