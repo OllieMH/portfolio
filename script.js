@@ -126,18 +126,17 @@ class HotspotManager {
 
 		this.setupCollisionDetection();
 		this.setupInteractions();
-		this.setupCloseButtons();
+		/*this.setupCloseButtons();*/
 	}
 
-	setupCloseButtons() {
-		
+	/*setupCloseButtons() {
 		const cvContent = document.getElementById("cv-content");
 		if (cvContent) {
 			cvContent.addEventListener("click", () => {
 				this.hideCV();
 			});
 		}
-	}
+	}*/
 
 	setupCollisionDetection() {
 		const checkCollisions = () => {
@@ -147,9 +146,9 @@ class HotspotManager {
 				// Handle about me content for house hotspot
 				if (trigger.classList.contains("hs-house")) {
 					if (colliding) {
-						this.showAboutMe();
+						this.showCard("about-me-content");
 					} else {
-						this.hideAboutMe();
+						this.hideCard("about-me-content");
 					}
 				} else {
 					// Only apply popped effect to non-house hotspots
@@ -169,21 +168,38 @@ class HotspotManager {
 					cvButton.addEventListener("click", (e) => {
 						e.preventDefault();
 						e.stopPropagation();
-						this.showCV();
+						this.showCard("cv-content");
 					});
 
 					const cvContent = document.getElementById("cv-content");
 					if (cvContent) {
 						cvContent.addEventListener("click", () => {
-							this.hideCV();
+							this.hideCard("cv-content");
 						});
 					}
 				}
 			}
 		});
 	}
-
-	showCV() {
+	showCard(elId) {
+		const card = document.getElementById(elId);
+		if (card) {
+			card.removeAttribute("hidden");
+			setTimeout(() => {
+				card.classList.add("show");
+			}, 10);
+		}
+	}
+	hideCard(elId) {
+		const card = document.getElementById(elId);
+		if (card) {
+			card.classList.remove("show");
+			setTimeout(() => {
+				card.setAttribute("hidden", "");
+			}, 300);
+		}
+	}
+	/*showCV() {
 		const cvContent = document.getElementById("cv-content");
 		if (cvContent) {
 			cvContent.removeAttribute("hidden");
@@ -222,7 +238,7 @@ class HotspotManager {
 				aboutMeContent.setAttribute("hidden", "");
 			}, 300);
 		}
-	}
+	}*/
 
 	isColliding(elementA, elementB) {
 		if (!elementA || !elementB) return false;
