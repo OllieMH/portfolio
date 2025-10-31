@@ -196,26 +196,20 @@ body {
 }
 
 .tree-object {
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+	position: relative;
 	&#cv {
 		background-image: url("assets/cv.png");
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
-		image-rendering: pixelated;
 		transform: rotate(-15deg);
 	}
 	&#projects {
 		background-image: url("assets/projects.png");
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
-		image-rendering: pixelated;
-		position: relative;
 		bottom: 40px;
 	}
 	&#socials {
 		background-image: url("assets/socials.png");
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
-		image-rendering: pixelated;
 		transform: rotate(15deg);
 	}
 }
