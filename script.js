@@ -126,6 +126,17 @@ class HotspotManager {
 
 		this.setupCollisionDetection();
 		this.setupInteractions();
+		this.setupCloseButtons();
+	}
+
+	setupCloseButtons() {
+		
+		const cvContent = document.getElementById("cv-content");
+		if (cvContent) {
+			cvContent.addEventListener("click", () => {
+				this.hideCV();
+			});
+		}
 	}
 
 	setupCollisionDetection() {
@@ -150,26 +161,47 @@ class HotspotManager {
 		requestAnimationFrame(checkCollisions);
 	}
 
-	/*setupInteractions() {
-    this.hotspots.forEach(({ trigger, target }) => {
-      trigger.addEventListener("pointerenter", () => {
-        target.classList.add("popped");
-      });
+	setupInteractions() {
+		this.hotspots.forEach(({ trigger, target }) => {
+			if (target.classList.contains("tree-obj")) {
+				const cvButton = target.querySelector("#cv");
+				if (cvButton) {
+					cvButton.addEventListener("click", (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						this.showCV();
+					});
 
-      trigger.addEventListener("pointerleave", () => {
-        target.classList.remove("popped");
-      });
+					const cvContent = document.getElementById("cv-content");
+					if (cvContent) {
+						cvContent.addEventListener("click", () => {
+							this.hideCV();
+						});
+					}
+				}
+			}
+		});
+	}
 
-      trigger.addEventListener("pointerdown", (e) => {
-        e.preventDefault();
-        target.classList.add("popped");
-      });
+	showCV() {
+		const cvContent = document.getElementById("cv-content");
+		if (cvContent) {
+			cvContent.removeAttribute("hidden");
+			setTimeout(() => {
+				cvContent.classList.add("show");
+			}, 10);
+		}
+	}
 
-      trigger.addEventListener("pointerup", () => {
-        target.classList.remove("popped");
-      });
-    });
-  }*/
+	hideCV() {
+		const cvContent = document.getElementById("cv-content");
+		if (cvContent) {
+			cvContent.classList.remove("show");
+			setTimeout(() => {
+				cvContent.setAttribute("hidden", "");
+			}, 300);
+		}
+	}
 
 	showAboutMe() {
 		const aboutMeContent = document.getElementById("about-me-content");

@@ -17,26 +17,8 @@
 				<!-- Interactive objects -->
 				<article class="interactive-area house">
 					<div class="house-img" aria-hidden="true"></div>
-					<div class="house-obj" aria-live="polite">
-						<a href="#" id="smoke" aria-label="About me section">
-							<span class="sr-only">View about me</span>
-						</a>
-					</div>
+					<div class="house-obj" id="smoke" aria-live="polite"></div>
 				</article>
-				<!-- About Me Content -->
-				<div id="about-me-content" class="about-me-content" hidden>
-					<div class="about-me-card">
-						<h2>About Me</h2>
-						<div class="about-me-text">
-							<p>Hi! I'm Oliver, a 26 year old customer advisor and IT student from Norway, passionate about web development and UX design.</p>
-							<p>
-								I have been tinkering on and off with frontend development for about 10 years, and have been taking university courses in computer engineering and frontend development before starting my Bachelor's degree in IT and
-								Digitalization.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="hotspot hs-house" aria-label="House hotspot"></div>
 
 				<article class="interactive-area tree">
 					<div class="tree-img" aria-hidden="true"></div>
@@ -53,6 +35,33 @@
 					</div>
 					<div class="hotspot hs-tree" aria-label="Tree hotspot"></div>
 				</article>
+
+				<!-- About Me Content -->
+				<div id="about-me-content" class="about-me-content" hidden>
+					<div class="card">
+												<h2>About Me</h2>
+						<div class="about-me-text">
+							<p>Hi! I'm Oliver, a 26 year old customer advisor and IT student from Norway, passionate about web development and UX design.</p>
+							<p>
+								I have been tinkering on and off with frontend development for about 10 years, and have been taking university courses in computer engineering and frontend development before starting my Bachelor's degree in IT and
+								Digitalization.
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- CV content -->
+				<div id="cv-content" class="cv-content" hidden>
+					<div class="card">
+												<h2>My CV</h2>
+						<div class="cv-text">
+							<a href="#" class="cvs" id="cv-no">Norwegian</a>
+							<a href="#" class="cvs" id="cv-en">English</a>
+							<p>Click to open in your browser!</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="hotspot hs-house" aria-label="House hotspot"></div>
 
 				<!-- Player character -->
 				<div id="player" role="img" aria-label="Player character"></div>

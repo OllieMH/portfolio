@@ -9,8 +9,8 @@
 	/* Colors */
 	--color-bg: #222;
 	--color-border: #333;
-	--color-shadow-1: #000;
-	--color-shadow-2: #111;
+	--color-shadow-1: #00000063;
+	--color-shadow-2: #11111146;
 	--color-ui-bg: #444;
 	--color-ui-text: #eee;
 	--color-ui-subtitle: #c0c0c0;
@@ -124,7 +124,7 @@ body {
 
 /* Tree */
 .tree {
-	right: 250px;
+	right: 200px;
 	bottom: -50px;
 	width: 800px;
 	height: 500px;
@@ -224,7 +224,6 @@ body {
 	position: fixed;
 	margin-bottom: 200px;
 	inset: 0;
-	background-color: rgba(0, 0, 0, 0.8);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -239,11 +238,35 @@ body {
 	pointer-events: all;
 }
 
-.about-me-card {
+/* ==================== CV Content ==================== */
+.cv-content {
+	position: fixed;
+	margin-bottom: 200px;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 300ms ease;
+}
+
+.cv-content.show {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.cv-content.show .card {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.card {
 	position: relative;
 	background-color: var(--color-ui-bg);
 	border: 5px solid var(--color-border);
-	box-shadow: 10px 10px 0 var(--color-shadow-1);
+	box-shadow: 10px 10px var(--color-shadow-1);
 	padding: 40px;
 	max-width: 800px;
 	width: 90%;
@@ -253,12 +276,12 @@ body {
 	transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 500ms ease;
 }
 
-.about-me-content.show .about-me-card {
+.about-me-content.show .card {
 	transform: translateY(0);
 	opacity: 1;
 }
 
-.about-me-card h2 {
+.card h2 {
 	margin: 0 0 20px 0;
 	font-size: 28px;
 	color: var(--color-ui-title);
