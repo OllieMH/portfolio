@@ -9,8 +9,8 @@
 	/* Colors */
 	--color-bg: #222;
 	--color-border: #333;
-	--color-shadow-1: #000;
-	--color-shadow-2: #111;
+	--color-shadow-1: #00000063;
+	--color-shadow-2: #11111146;
 	--color-ui-bg: #444;
 	--color-ui-text: #eee;
 	--color-ui-subtitle: #c0c0c0;
@@ -19,8 +19,8 @@
 
 	/* Z-index layers */
 	--z-sky: 0;
-	--z-tree: 4;
-	--z-house: 5;
+	--z-tree: 5;
+	--z-house: 4;
 	--z-ground: 6;
 	--z-hotspot: 10;
 	--z-player: 10;
@@ -104,9 +104,9 @@ body {
 /* House */
 .house {
 	right: 100px;
-	top: 290px;
+	top: auto;
 	width: 500px;
-	height: 750px;
+	height: 500px;
 	z-index: var(--z-house);
 }
 
@@ -124,7 +124,7 @@ body {
 
 /* Tree */
 .tree {
-	right: 235px;
+	right: 225px;
 	bottom: -50px;
 	width: 800px;
 	height: 500px;
@@ -146,25 +146,18 @@ body {
 /* ==================== Portfolio Objects ==================== */
 .pf-object {
 	display: block;
-	width: 25px;
-	height: 50px;
+	width: 66px;
+	height: 100px;
 	transition: transform 260ms cubic-bezier(0.2, 0.5, 0.2, 1);
 	transform-origin: center bottom;
 	will-change: transform;
 }
 
-/* House Objects Container */
-.house-obj {
+/* Smoke animation */
+#smoke {
 	position: absolute;
 	left: 315px;
-	top: 10px;
-	display: flex;
-	transition: transform 200ms ease, filter 200ms ease;
-	transform-origin: center bottom;
-	will-change: transform;
-}
-.house-object#smoke {
-	position: absolute;
+	top: 9px;
 	width: 64px;
 	height: 128px;
 	background-image: url("assets/smoke.png");
@@ -183,22 +176,14 @@ body {
 		background-position: -1024px 0; /* 16 frames × 64px width */
 	}
 }
-.house-obj.popped {
-	transform: translateY(-50px) scale(1.5);
-	filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.6));
-}
-
-.house-obj.popped #smoke {
-	transform: translateX(-20px) translateY(-20px);
-}
 
 /* Tree Objects Container */
 .tree-obj {
 	position: absolute;
-	left: 275px;
-	top: 50px;
+	left: 255px;
+	top: 33px;
 	display: flex;
-	gap: 75px;
+	gap: 30px;
 	transition: transform 200ms ease, filter 200ms ease;
 	transform-origin: center bottom;
 	will-change: transform;
@@ -210,27 +195,74 @@ body {
 }
 
 .tree-object#cv {
-	background-color: red;
+	background-image: url("assets/cv.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
 	transform: rotate(-15deg);
 }
 
 .tree-object#projects {
-	background-color: blue;
+	background-image: url("assets/projects.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
 	position: relative;
 	bottom: 40px;
 }
 
 .tree-object#socials {
-	background-color: green;
+	background-image: url("assets/socials.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
 	transform: rotate(15deg);
 }
+/* ==================== CV Content ==================== */
+.cv-content {
+	position: fixed;
+	margin-bottom: 200px;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 300ms ease;
+}
 
+.cv-content.show {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.cv-content.show .card {
+	transform: translateY(0);
+	opacity: 1;
+}
+.cv-container {
+	display: flex;
+	gap: 40px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.cvs {
+	display: flex;
+	flex-direction: column;
+	text-decoration: none;
+	color: inherit;
+	align-items: center;
+}
+.cvs img {
+	max-height: 400px;
+	image-rendering: auto;
+}
 /* ==================== About Me Content ==================== */
 .about-me-content {
 	position: fixed;
 	margin-bottom: 200px;
 	inset: 0;
-	background-color: rgba(0, 0, 0, 0.8);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -245,11 +277,11 @@ body {
 	pointer-events: all;
 }
 
-.about-me-card {
+.card {
 	position: relative;
 	background-color: var(--color-ui-bg);
 	border: 5px solid var(--color-border);
-	box-shadow: 10px 10px 0 var(--color-shadow-1);
+	box-shadow: 10px 10px var(--color-shadow-1);
 	padding: 40px;
 	max-width: 800px;
 	width: 90%;
@@ -259,12 +291,12 @@ body {
 	transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 500ms ease;
 }
 
-.about-me-content.show .about-me-card {
+.about-me-content.show .card {
 	transform: translateY(0);
 	opacity: 1;
 }
 
-.about-me-card h2 {
+.card h2 {
 	margin: 0 0 20px 0;
 	font-size: 28px;
 	color: var(--color-ui-title);

@@ -17,44 +17,51 @@
 				<!-- Interactive objects -->
 				<article class="interactive-area house">
 					<div class="house-img" aria-hidden="true"></div>
-					<div class="house-obj" aria-live="polite">
-						<a href="#" class="house-object" id="smoke" aria-label="About me section">
-							<span class="sr-only">View about me</span>
-						</a>
-					</div>
-
-					<!-- About Me Content -->
-					<div id="about-me-content" class="about-me-content" hidden>
-						<div class="about-me-card">
-							<h2>About Me</h2>
-							<div class="about-me-text">
-								<p>Hi! I'm Oliver, a 26 year old customer advisor and IT student from Norway, passionate about web development and UX design.</p>
-								<p>
-									I have been tinkering on and off with frontend development for about 10 years, and have been taking university courses in computer engineering and frontend development before starting my Bachelor's degree in IT and
-									Digitalization.
-								</p>
-							</div>
-						</div>
-					</div>
+					<div class="house-obj" id="smoke" aria-live="polite"></div>
 				</article>
-
-				<div class="hotspot hs-house" aria-label="House hotspot"></div>
 
 				<article class="interactive-area tree">
 					<div class="tree-img" aria-hidden="true"></div>
 					<div class="tree-obj" aria-live="polite">
 						<a href="#" class="pf-object tree-object" id="cv" aria-label="CV">
-							<span class="sr-only">View tree project 1</span>
+							<span class="sr-only">View cv</span>
 						</a>
 						<a href="#" class="pf-object tree-object" id="projects" aria-label="Projects">
-							<span class="sr-only">View tree project 2</span>
+							<span class="sr-only">View projects</span>
 						</a>
 						<a href="#" class="pf-object tree-object" id="socials" aria-label="Socials">
-							<span class="sr-only">View tree project 3</span>
+							<span class="sr-only">View socials</span>
 						</a>
 					</div>
 					<div class="hotspot hs-tree" aria-label="Tree hotspot"></div>
 				</article>
+
+				<!-- About Me Content -->
+				<div id="about-me-content" class="about-me-content" hidden>
+					<div class="card">
+						<h2>About Me</h2>
+						<div class="about-me-text">
+							<p>Hi! I'm Oliver, a 26 year old customer advisor and IT student from Norway, passionate about web development and UX design.</p>
+							<p>
+								I have been tinkering on and off with frontend development for about 10 years, and have been taking university courses in computer engineering and frontend development before starting my Bachelor's degree in IT and
+								Digitalization.
+							</p>
+						</div>
+					</div>
+				</div>
+				<!-- CV content -->
+				<div id="cv-content" class="cv-content" hidden>
+					<div class="card">
+						<h2>My CV</h2>
+						<div class="cv-container">
+							<a href="assets/Oliver_Hille_CV.pdf" target="_blank" class="cvs" id="cv-no"><img src="assets/cv-no.png" alt="Norwegian CV" />Norwegian</a>
+							<a href="assets/Oliver_Hille_CV_EN.pdf" target="_blank" class="cvs" id="cv-en"><img src="assets/cv-en.png" alt="English CV" />English</a>
+						</div>
+						<p>Click to open in PDF format!</p>
+					</div>
+				</div>
+
+				<div class="hotspot hs-house" aria-label="House hotspot"></div>
 
 				<!-- Player character -->
 				<div id="player" role="img" aria-label="Player character"></div>
