@@ -210,7 +210,7 @@ body {
 }
 
 .tree-object#cv {
-	background-color: red;
+	background-image: url("assets/cv-no.png");
 	transform: rotate(-15deg);
 }
 
