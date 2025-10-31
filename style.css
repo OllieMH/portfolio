@@ -19,8 +19,8 @@
 
 	/* Z-index layers */
 	--z-sky: 0;
-	--z-tree: 4;
-	--z-house: 5;
+	--z-tree: 5;
+	--z-house: 4;
 	--z-ground: 6;
 	--z-hotspot: 10;
 	--z-player: 10;
@@ -104,9 +104,9 @@ body {
 /* House */
 .house {
 	right: 100px;
-	top: 290px;
+	top: auto;
 	width: 500px;
-	height: 750px;
+	height: 500px;
 	z-index: var(--z-house);
 }
 
@@ -124,7 +124,7 @@ body {
 
 /* Tree */
 .tree {
-	right: 235px;
+	right: 250px;
 	bottom: -50px;
 	width: 800px;
 	height: 500px;
@@ -146,25 +146,18 @@ body {
 /* ==================== Portfolio Objects ==================== */
 .pf-object {
 	display: block;
-	width: 25px;
-	height: 50px;
+	width: 66px;
+	height: 100px;
 	transition: transform 260ms cubic-bezier(0.2, 0.5, 0.2, 1);
 	transform-origin: center bottom;
 	will-change: transform;
 }
 
-/* House Objects Container */
-.house-obj {
+/* Smoke animation */
+#smoke {
 	position: absolute;
 	left: 315px;
-	top: 10px;
-	display: flex;
-	transition: transform 200ms ease, filter 200ms ease;
-	transform-origin: center bottom;
-	will-change: transform;
-}
-.house-object#smoke {
-	position: absolute;
+	top: 9px;
 	width: 64px;
 	height: 128px;
 	background-image: url("assets/smoke.png");
@@ -183,22 +176,14 @@ body {
 		background-position: -1024px 0; /* 16 frames × 64px width */
 	}
 }
-.house-obj.popped {
-	transform: translateY(-50px) scale(1.5);
-	filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.6));
-}
-
-.house-obj.popped #smoke {
-	transform: translateX(-20px) translateY(-20px);
-}
 
 /* Tree Objects Container */
 .tree-obj {
 	position: absolute;
-	left: 275px;
-	top: 50px;
+	left: 255px;
+	top: 33px;
 	display: flex;
-	gap: 75px;
+	gap: 30px;
 	transition: transform 200ms ease, filter 200ms ease;
 	transform-origin: center bottom;
 	will-change: transform;
@@ -210,18 +195,27 @@ body {
 }
 
 .tree-object#cv {
-	background-image: url("assets/cv-no.png");
+	background-image: url("assets/cv.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
 	transform: rotate(-15deg);
 }
 
 .tree-object#projects {
-	background-color: blue;
+	background-image: url("assets/projects.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
 	position: relative;
 	bottom: 40px;
 }
 
 .tree-object#socials {
-	background-color: green;
+	background-image: url("assets/socials.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
 	transform: rotate(15deg);
 }
 
