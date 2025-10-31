@@ -256,7 +256,7 @@ body {
 }
 .cvs img {
 	max-height: 400px;
-	image-rendering: smooth;
+	image-rendering: auto;
 }
 /* ==================== About Me Content ==================== */
 .about-me-content {
