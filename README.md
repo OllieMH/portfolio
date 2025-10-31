@@ -1,6 +1,6 @@
 # 🎮 Oliver's Interactive Portfolio
 
-An interactive, game-style portfolio website where visitors control a character to explore different sections using keyboard controls. Navigate through a visually engaging 2D environment to discover information about me, my projects, CV, and social links.
+An interactive, game-style portfolio website where visitors control a character to explore different sections using keyboard controls. Navigate through a 2D environment to discover information about me, my projects, CV, and social links.
 
 ## 🌐 Live Demo
 
@@ -20,11 +20,7 @@ An interactive, game-style portfolio website where visitors control a character 
 
 - **HTML5** - Semantic markup structure
 - **CSS3** - Custom styling with animations and transitions
-- **Vanilla JavaScript** - No frameworks, just pure JS with:
-  - ES6 Classes (`PlayerController`, `HotspotManager`)
-  - Animation Frame API for smooth movement
-  - Collision detection system
-  - Event-driven architecture
+- **Vanilla JavaScript** - No frameworks, just pure JS.
 - **GitHub Pages** - Hosting and deployment
 
 ## 🎮 How to Use
@@ -56,7 +52,7 @@ python -m http.server 8000
 npx serve
 ```
 
-Then visit `http://localhost:8000` in your browser.
+Then visit `http://localhost:8000` or open `index.html` in your browser.
 
 ## 📁 Project Structure
 
@@ -82,19 +78,18 @@ Handles collision detection between the player and interactive areas, triggering
 - [ ] Add more interactive areas and sections
 - [ ] Implement mobile touch controls
 - [ ] Add sound effects for interactions
-- [ ] Create additional character animations
 - [ ] Add more easter eggs and hidden features
-- [ ] Implement a day/night theme toggle
+- [ ] Implement a weather system with API data
 
 ## 👨‍💻 About the Developer
 
-Hi! I'm Oliver, a 26-year-old customer advisor and IT student from Norway, passionate about web development and UX design. I've been tinkering with frontend development for about 10 years and am currently pursuing a Bachelor's degree in IT and Digitalization.
+Hi! I'm Oliver, a 26-year-old customer advisor and IT student from Norway, passionate about web development and UX design. I've been tinkering with frontend development on and off for about 10 years and am currently pursuing a Bachelor's degree in IT and Digitalization.
 
 ## 📫 Connect With Me
 
 - **Website**: [omhille.no](https://omhille.no)
 - **GitHub**: [@OllieMH](https://github.com/OllieMH)
-- *(Add your other socials here)*
+- **LinkedIn** [Oliver Matre Hille](https://www.linkedin.com/in/oliver-matre-hille-779b61239/)
 
 ## 📄 License
 
@@ -102,6 +97,3 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**⚡ Built with passion and vanilla JavaScript** 🚀
-
-*Feel free to explore the code and use it as inspiration for your own projects!*
