@@ -344,14 +344,12 @@ body {
 	background-repeat: no-repeat;
 	image-rendering: pixelated;
 	z-index: var(--z-player);
-}
-
-#player.walking {
-	animation: walk 0.6s steps(4) infinite;
-}
-
-#player.player-flipped {
-	transform: scaleX(-1);
+	&.walking {
+		animation: walk 0.6s steps(4) infinite;
+	}
+	&.player-flipped {
+		transform: scaleX(-1);
+	}
 }
 
 @keyframes walk {
@@ -370,30 +368,27 @@ body {
 	background-color: var(--color-ui-bg);
 	color: var(--color-ui-text);
 	text-align: center;
-}
-
-#ui-bar h1 {
-	margin: 0 0 20px 0;
-	font-size: 32px;
-	color: var(--color-ui-title);
-	text-shadow: 5px 5px 0 var(--color-shadow-1);
-}
-
-#ui-bar p {
-	margin: 0;
-	font-size: 16px;
-	color: var(--color-ui-subtitle);
-}
-
-#ui-bar kbd {
-	display: inline-block;
-	padding: 4px 8px;
-	margin: 0 4px;
-	background-color: var(--color-border);
-	border-radius: 4px;
-	border: 2px solid var(--color-shadow-2);
-	font-family: inherit;
-	font-size: inherit;
+	h1 {
+		margin: 0 0 20px 0;
+		font-size: 32px;
+		color: var(--color-ui-title);
+		text-shadow: 5px 5px 0 var(--color-shadow-1);
+	}
+	p {
+		margin: 0;
+		font-size: 16px;
+		color: var(--color-ui-subtitle);
+	}
+	kbd {
+		display: inline-block;
+		padding: 4px 8px;
+		margin: 0 4px;
+		background-color: var(--color-border);
+		border-radius: 4px;
+		border: 2px solid var(--color-shadow-2);
+		font-family: inherit;
+		font-size: inherit;
+	}
 }
 
 /* ==================== Responsive Design ==================== */
