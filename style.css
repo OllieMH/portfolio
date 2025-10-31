@@ -247,16 +247,14 @@ body {
 	flex-wrap: wrap;
 	justify-content: center;
 }
-.cvs {
-	display: flex;
-	flex-direction: column;
-	text-decoration: none;
-	color: inherit;
-	align-items: center;
+.cv-container p {
+	margin-bottom: -30px;
+	line-height: 24px;
+	font-size: small;
 }
-.cvs img {
-	max-height: 400px;
-	image-rendering: auto;
+.cv-container a {
+	text-decoration: none;
+	color: var(--color-ui-title);
 }
 /* ==================== About Me Content ==================== */
 .about-me-content {
